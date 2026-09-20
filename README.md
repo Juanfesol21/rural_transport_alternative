@@ -36,36 +36,16 @@ The system includes vehicle control and station sensing into two independent mic
 ---
 
 ##  System Control Logic & Workflow
-
-
- +-------------------------------+
- |  Vehicle in Motion on Track   |
- +-------------------------------+
-                 │
-                 ▼
- +-------------------------------+
- | Station: HC-SR04 detects vehicle | ──► [ Station: Turn ON Signal LED ]
- +-------------------------------+                      │
-                                                        ▼
- +-------------------------------+        +----------------------------+
- | Vehicle: LDR detects LED beam | ◄───── | Optical Beam Transmission  |
- +-------------------------------+        +----------------------------+
-                 │
-                 ▼
- +-------------------------------+
- | Vehicle: Gradually reduces speed
-  (PWM = 5)|
- +-------------------------------+
-                 │
-                 ▼
- +-------------------------------+
- |  Boarding/Loading Dwell Time  |
- +-------------------------------+
-                 │
-                 ▼
- +-------------------------------+
- | Vehicle: Progressive Ramp-Up  |
- +-------------------------------+
+```mermaid
+graph TD
+    A[Vehicle in Motion on Track] --> B[Station: HC-SR04 Detects Vehicle]
+    B --> C[Station: Turn ON Signal LED]
+    C --> D[Optical Beam Transmission]
+    D --> E[Vehicle: LDR Detects LED Beam]
+    E --> F[Vehicle: Gradually Reduces Speed PWM = 5]
+    F --> G[Boarding / Loading Dwell Time]
+    G --> H[Vehicle: Progressive Ramp-Up]
+```
  ## Experimental Testbed & Results
 To validate the mechatronic concept, a 1-meter balsa wood test track featuring a fully operational station module was constructed. Experimental runs confirmed 100% reliability in vehicle detection, precise optical signal trigger alignment, timed motor cutoffs, and autonomous motion resumption.
 ##  Engineering Insights & Design Iterations
